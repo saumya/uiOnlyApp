@@ -1,0 +1,26 @@
+/*! saumya.css v1.0.0 */
+
+html {
+  background: #FFECEC;
+}
+
+li{
+  display: inline-block;
+  min-width: 6em;
+  text-align: center;
+  background-color: #B2E9FF;
+  padding: 0.5em;
+
+  user-select: none;
+  cursor: default;
+}
+li:hover { 
+  background-color: #4CCBFF;
+}
+
+#id_menu {
+  background:#B2E9FF;
+  list-style-type: none;
+  padding: 0px;
+  margin: 2px;
+}
