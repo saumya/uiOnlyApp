@@ -35,7 +35,9 @@ html {
   flex-direction: row;
   justify-content: center;
 }
-
+#idCustomers{
+  padding: 1em;
+}
 .shortDetail{
   padding: 1em;
   background-color: #A3E3FE;

@@ -1,0 +1,19 @@
+console.log('first.js');
+//START - Application Object
+var appFirstObj = {
+  onGotAllCustomerData: function(dataObj){
+    console.log('onGotAllCustomerData');
+    var total = dataObj.length;
+    dataObj.map(function(cValue,cIndex,cArray){
+      console.log(cValue,cIndex,cArray);
+      //console.log(cValue.name);
+      var sHtml = "<div class='shortDetail'><div>"+cValue.id+":"+cValue.name+":"+cValue.phone+"</div><div>"+cValue.address+"</div></div>";
+      $('#idCustomers').append(sHtml);
+    });
+    $("#idTotalCustomers").html(total);
+  },
+  endApp: function(){
+    console.log('End Application');
+  }
+};
+//END - Application Object

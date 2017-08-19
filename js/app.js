@@ -1,4 +1,5 @@
 console.log('app.js');
+//jQuery Entry - jQuery.ready()
 $(function(){
   console.log('loaded');
   var apiRootURI = "http://localhost:8888/slim/app_1/myApp.php/";
@@ -16,7 +17,7 @@ $(function(){
         console.log('textStatus',textStatus);
         console.log('jqXHR',jqXHR);
         console.groupEnd();
-        app.onGotData(data);
+        appFirstObj.onGotAllCustomerData(data);
       },
     })
     .done(function(data){
@@ -29,21 +30,4 @@ $(function(){
     });
   }
   getAllCustomers();
-});//END: jQuery-ready()
-//START - Application Object
-var app = {
-  onGotData: function(dataObj){
-    console.log('onGotData');
-    console.log(dataObj);
-    dataObj.map(function(cValue,cIndex,cArray){
-      console.log(cValue,cIndex,cArray);
-      console.log(cValue.name);
-      var sHtml = "<div class='shortDetail'><div>"+cValue.id+":"+cValue.name+":"+cValue.phone+"</div><div>"+cValue.address+"</div></div>";
-      $('#idCustomers').append(sHtml);
-    });
-  },
-  endApp: function(){
-    console.log('End Application');
-  }
-};
-//END - Application Object
+});//END: jQuery.ready()
