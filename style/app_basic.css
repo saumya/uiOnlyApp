@@ -85,3 +85,11 @@ input{
   background-color: #1FBBFF;
   color: #FFFFFF;
 }
+
+.btnDeleteCustomer{
+  background-color: #FFAAAA;
+  padding: 0.4em;
+  color: #000000;
+  text-align: center;
+  margin-top: 0.5em;
+}

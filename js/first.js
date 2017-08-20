@@ -11,7 +11,7 @@ var appFirstObj = {
     dataObj.map(function(cValue,cIndex,cArray){
       //console.log(cValue,cIndex,cArray);
       //console.log(cValue.name);
-      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.phone+"</div><div>"+cValue.address+"</div></div>";
+      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.phone+"</div><div>"+cValue.address+"</div><div id=cust_"+cValue.id+" class='btnDeleteCustomer'>Delete</div></div>";
       $('#idCustomersList').append(sHtml);
       //$('#idCustomers').prepend(sHtml);
     });
@@ -49,10 +49,12 @@ var appFirstObj = {
       console.log('============== Adding EventHandlers : End ==============');
     }
 
-    $(".shortDetail").on('click',function(eventObj){
+    //$(".shortDetail").on('click',function(eventObj){
+    $(".btnDeleteCustomer").on('click',function(eventObj){
       //debugger;
       //console.log('shortDetail:click:',eventObj);
       //console.log(eventObj.currentTarget);
+      
       var tID = eventObj.currentTarget.id; // cust_234
       var customerID = tID.substr(5); //cust_ , 234
       console.log('customerID',customerID);
