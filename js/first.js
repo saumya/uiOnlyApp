@@ -21,10 +21,17 @@ var appFirstObj = {
       var uPhone = $("#idUPhone").val();
       var uAddress = $("#idUAddress").val();
       console.log( uName,uPhone,uAddress );
-      restCalls.addNewCustomer();
+      restCalls.addNewCustomer({
+        customerName:uName,
+        customerPhone:uPhone,
+        customerAddress:uAddress
+      });
     });
     console.log('============== Adding EventHandlers : End ==============');
     console.groupEnd();
+  },
+  onNewCustomerAdded: function(){
+    restCalls.getAllCustomers();
   },
   endApp: function(){
     console.log('End Application');

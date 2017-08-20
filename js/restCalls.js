@@ -1,5 +1,6 @@
 console.log('restCalls.js');
 var restCalls = {
+  // GET: All customers
   getAllCustomers: function(){
     $.ajax({
       method: "GET",
@@ -25,29 +26,32 @@ var restCalls = {
       console.log('AJAX:getAllCustomers:fail:',error);
     });
   },
-  addNewCustomer: function(){
+  // POST: add new customer
+  addNewCustomer: function(dataObj){
     $.ajax({
-      method: "GET",
+      method: "POST",
+      async: true,
       url: uRESTConfig.apiRootURI+uRESTConfig.addCustomer,
-      cache: false,
+      data:dataObj,
       dataType:'json',
       success: function(data, textStatus, jqXHR){
-        console.group('AJAX:getAllCustomers:Success');
+        console.group('AJAX:addNewCustomer:Success');
         console.log(data);
         console.log('textStatus',textStatus);
         console.log('jqXHR',jqXHR);
         console.groupEnd();
-        appFirstObj.onGotAllCustomerData(data);
+        //appFirstObj.onGotAllCustomerData(data);
+        appFirstObj.onNewCustomerAdded();
       },
     })
     .done(function(data){
-      console.group('AJAX:getAllCustomers:done');
+      console.group('AJAX:addNewCustomer:done');
       console.log(data);
       console.groupEnd();
-      appFirstObj.onAppReadyWithCustomerData();
+      //appFirstObj.onAppReadyWithCustomerData();
     })
     .fail(function(error){
-      console.log('AJAX:getAllCustomers:fail:',error);
+      console.log('AJAX:addNewCustomer:fail:',error);
     });
   },
   updateCustomerProfile: function(customerID){},
