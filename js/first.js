@@ -11,6 +11,20 @@ var appFirstObj = {
       $('#idCustomers').append(sHtml);
     });
     $("#idTotalCustomers").html(total);
+    //this.onAppReadyWithCustomerData();
+  },
+  onAppReadyWithCustomerData: function(){
+    console.group('onAppReadyWithCustomerData');
+    console.log('============== Adding EventHandlers : Start ==============');
+    $("#idBtnAddCustomer").on('click',function(event){
+      var uName = $("#idUName").val();
+      var uPhone = $("#idUPhone").val();
+      var uAddress = $("#idUAddress").val();
+      console.log( uName,uPhone,uAddress );
+      restCalls.addNewCustomer();
+    });
+    console.log('============== Adding EventHandlers : End ==============');
+    console.groupEnd();
   },
   endApp: function(){
     console.log('End Application');
