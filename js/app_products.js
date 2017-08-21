@@ -12,13 +12,25 @@ $(function(){
   //$('#id_menu_products').on('click',function(){ window.location.href = 'http://localhost:8888/slim/ui_app_1/products.html'; });
   // Start Logic =========================
   var resultObj = restCalls.getAllProducts();
-  resultObj.done(function(data){
+  resultObj.done(function(dataProducts){
     console.group('getAllProducts:done');
-    console.log(data);
+    console.log(dataProducts);
     console.groupEnd();
     //productsApp.ready();
-    productsApp.onAppReadyWithProductsData(data);
-  })
+    //productsApp.onAppReadyWithProductsData(data);
+
+    var resultObjCompanies = restCalls.getAllCompanies();
+    resultObjCompanies.done(function(dataCompanies){
+      console.group('getAllCompanies:done');
+      console.log(dataCompanies);
+      console.groupEnd();
+
+      productsApp.onAppReadyWithProductsData(dataProducts, dataCompanies);
+    });
+
+  });
+
+  
   //debugger;
   // End Logic ===========================
 });//END: jQuery.ready()
@@ -30,15 +42,17 @@ var productsApp = {
   ready: function(){
     console.log('productsApp:ready');
   },
-  onAppReadyWithProductsData: function(dataObj){
+  onAppReadyWithProductsData: function(dataProducts, dataCompanies){
     console.group('onAppReadyWithProductsData');
+    console.log('products',dataProducts);
+    console.log('companies',dataCompanies);
     //
     console.log('onGotAllCustomerData');
     // clear the old data / whole data
     $('#idProductsList').empty();
     // add new/fresh data
-    var total = dataObj.length;
-    dataObj.map(function(cValue,cIndex,cArray){
+    var total = dataProducts.length;
+    dataProducts.map(function(cValue,cIndex,cArray){
       //console.log(cValue,cIndex,cArray);
       //console.log(cValue.name);
       var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteCustomer'>Delete</div></div>";

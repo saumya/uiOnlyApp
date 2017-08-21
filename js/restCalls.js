@@ -141,6 +141,33 @@ var restCalls = {
     });
   },
   // ========================== / PRODUCTS =============================
+  // ========================== COMPANIES =============================
+  getAllCompanies: function(){
+    return $.ajax({
+      method: "GET",
+      url: uRESTConfig.apiRootURI+uRESTConfig.allCompanies,
+      cache: false,
+      dataType:'json',
+      success: function(data, textStatus, jqXHR){
+        console.group('AJAX:getAllCompanies:Success');
+        console.log(data);
+        console.log('textStatus',textStatus);
+        console.log('jqXHR',jqXHR);
+        console.groupEnd();
+        //appFirstObj.onGotAllCustomerData(data);
+      },
+    })
+    .done(function(data){
+      console.group('AJAX:getAllCompanies:done');
+      console.log(data);
+      console.groupEnd();
+      //appFirstObj.onAppReadyWithCustomerData();
+    })
+    .fail(function(error){
+      console.log('AJAX:getAllCompanies:fail:',error);
+    });
+  },
+  // ========================== / COMPANIES =============================
   end: function(){
     console.log('end : restCalls');
   }
