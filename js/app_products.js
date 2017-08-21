@@ -60,7 +60,16 @@ var productsApp = {
       //$('#idCustomers').prepend(sHtml);
     });
     $("#idTotal").html(total);
-    //this.onAppReadyWithCustomerData();
+    // Filling out the Company Selections
+    console.log('==========================');
+    var totalCompanies = dataCompanies.length;
+    console.log('totalCompanies',totalCompanies);
+    $('#idTotalCompanies').html(totalCompanies);
+    dataCompanies.map(function(cValue,cIndex,cArray){
+      var sHtml = '<option value="'+cValue.id+'">'+cValue.name+'</option>';
+      $('#idPCompanyNameId').append(sHtml); 
+    });
+
     //
     if(this.isFirstTime===true){
       this.isFirstTime = false;
@@ -76,6 +85,11 @@ var productsApp = {
           product_price:pPrice,
           company_id:pCompanyId
         });
+
+        /*
+        var aaa = $("#idPCompanyNameId");
+        aaa.append("<option value="value1">Value 1</option>");
+        */
 
       });
       console.log('============== Adding EventHandlers : End ==============');
