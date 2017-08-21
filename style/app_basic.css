@@ -95,3 +95,14 @@ input{
   text-align: center;
   margin-top: 0.5em;
 }
+
+/* Products */
+#idProducts{
+  padding: 1em;
+  max-height: 12em;
+
+  min-width: 90%;
+  width: 90%;
+  max-width: 90%;
+  overflow: scroll;
+}
