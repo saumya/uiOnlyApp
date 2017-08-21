@@ -35,7 +35,7 @@ var productsApp = {
     //
     console.log('onGotAllCustomerData');
     // clear the old data / whole data
-    $('#idCustomersList').empty();
+    $('#idProductsList').empty();
     // add new/fresh data
     var total = dataObj.length;
     dataObj.map(function(cValue,cIndex,cArray){
@@ -51,8 +51,35 @@ var productsApp = {
     if(this.isFirstTime===true){
       this.isFirstTime = false;
       console.log('============== Adding EventHandlers : Start ==============');
+      $("#idBtnAddProduct").on('click',function(event){
+        var pName = $("#idPName").val();
+        var pPrice = $("#idPPrice").val();
+        var pCompanyId = $("#idPCompanyId").val();
+        console.log( pName,pPrice,pCompanyId );
+        
+        var ajaxResultObj = restCalls.addNewProduct({
+          product_name:pName,
+          product_price:pPrice,
+          company_id:pCompanyId
+        });
+
+      });
+      console.log('============== Adding EventHandlers : End ==============');
     } 
     console.groupEnd();
+  },
+  onProductAdded: function(){
+    console.log('onProductAdded');
+
+    var resultObj = restCalls.getAllProducts();
+    resultObj.done(function(data){
+      console.group('getAllProducts:done');
+      console.log(data);
+      console.groupEnd();
+      //productsApp.ready();
+      productsApp.onAppReadyWithProductsData(data);
+    })
+
   },
   end:function(){}
 }

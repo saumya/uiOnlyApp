@@ -54,7 +54,7 @@ var restCalls = {
       console.log('AJAX:addNewCustomer:fail:',error);
     });
   },
-  updateCustomerProfile: function(customerID){},
+  updateCustomerProfile: function(customerID){ /* TODO */ },
   deleteCustomer: function(customerID){
     $.ajax({
       method: "POST",
@@ -110,6 +110,34 @@ var restCalls = {
     })
     .fail(function(error){
       console.log('AJAX:getAllProducts:fail:',error);
+    });
+  },
+  addNewProduct: function(dataObj){
+    $.ajax({
+      method: "POST",
+      async: true,
+      url: uRESTConfig.apiRootURI+uRESTConfig.addProduct,
+      data:dataObj,
+      dataType:'json',
+      success: function(data, textStatus, jqXHR){
+        console.group('AJAX:addNewProduct:Success');
+        console.log(data);
+        console.log('textStatus',textStatus);
+        console.log('jqXHR',jqXHR);
+        console.groupEnd();
+        //appFirstObj.onGotAllCustomerData(data);
+        //appFirstObj.onNewCustomerAdded();
+        productsApp.onProductAdded();
+      },
+    })
+    .done(function(data){
+      console.group('AJAX:addNewProduct:done');
+      console.log(data);
+      console.groupEnd();
+      //appFirstObj.onAppReadyWithCustomerData();
+    })
+    .fail(function(error){
+      console.log('AJAX:addNewProduct:fail:',error);
     });
   },
   // ========================== / PRODUCTS =============================
