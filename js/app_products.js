@@ -60,24 +60,26 @@ var productsApp = {
       //$('#idCustomers').prepend(sHtml);
     });
     $("#idTotal").html(total);
-    // Filling out the Company Selections
-    console.log('==========================');
-    var totalCompanies = dataCompanies.length;
-    console.log('totalCompanies',totalCompanies);
-    $('#idTotalCompanies').html(totalCompanies);
-    dataCompanies.map(function(cValue,cIndex,cArray){
-      var sHtml = '<option value="'+cValue.id+'">'+cValue.name+'</option>';
-      $('#idPCompanyNameId').append(sHtml); 
-    });
-
     //
     if(this.isFirstTime===true){
       this.isFirstTime = false;
       console.log('============== Adding EventHandlers : Start ==============');
+
+      // Filling out the Company Selections
+      console.log('==========================');
+      var totalCompanies = dataCompanies.length;
+      console.log('totalCompanies',totalCompanies);
+      $('#idTotalCompanies').html(totalCompanies);
+      dataCompanies.map(function(cValue,cIndex,cArray){
+        var sHtml = '<option value="'+cValue.id+'">'+cValue.name+'</option>';
+        $('#idPCompanyNameId').append(sHtml); 
+      });
+
       $("#idBtnAddProduct").on('click',function(event){
         var pName = $("#idPName").val();
         var pPrice = $("#idPPrice").val();
-        var pCompanyId = $("#idPCompanyId").val();
+        //var pCompanyId = $("#idPCompanyId").val();
+        var pCompanyId = $("#idPCompanyNameId").val();
         console.log( pName,pPrice,pCompanyId );
         
         var ajaxResultObj = restCalls.addNewProduct({
