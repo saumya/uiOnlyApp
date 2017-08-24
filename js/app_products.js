@@ -55,7 +55,7 @@ var productsApp = {
     dataProducts.map(function(cValue,cIndex,cArray){
       //console.log(cValue,cIndex,cArray);
       //console.log(cValue.name);
-      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteCustomer'>Delete</div></div>";
+      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
       $('#idProductsList').append(sHtml);
       //$('#idCustomers').prepend(sHtml);
     });
@@ -96,6 +96,19 @@ var productsApp = {
       });
       console.log('============== Adding EventHandlers : End ==============');
     } 
+
+    //
+    $(".btnDeleteProduct").on('click',function(eventObj){
+      //debugger;
+      //console.log('shortDetail:click:',eventObj);
+      //console.log(eventObj.currentTarget);
+      
+      var tID = eventObj.currentTarget.id; // cust_234
+      var productID = tID.substr(5); //cust_ , 234
+      console.log('productID',productID);
+      //restCalls.deleteProduct({ id:productID }); 
+    });
+    //
     console.groupEnd();
   },
   onProductAdded: function(){
