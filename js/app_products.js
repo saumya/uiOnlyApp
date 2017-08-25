@@ -107,6 +107,8 @@ var productsApp = {
       var productID = tID.substr(5); //cust_ , 234
       console.log('productID',productID);
       restCalls.deleteProduct({id:productID});
+      //var resultObjProducts = restCalls.deleteProduct({id:productID});
+      //resultObjProducts.success(function(){});
     });
     //
     console.groupEnd();
@@ -122,7 +124,29 @@ var productsApp = {
       //productsApp.ready();
       productsApp.onAppReadyWithProductsData(data);
     })
-
   },
-  end:function(){}
+  onProductRemoved: function(){
+    console.log('onProductRemoved');
+    var resultObj = restCalls.getAllProducts();
+    resultObj.done(function(dataProducts){
+      console.group('getAllProducts:done');
+      console.log(dataProducts);
+      console.groupEnd();
+      //productsApp.ready();
+      //productsApp.onAppReadyWithProductsData(data);
+  
+      var resultObjCompanies = restCalls.getAllCompanies();
+      resultObjCompanies.done(function(dataCompanies){
+        console.group('getAllCompanies:done');
+        console.log(dataCompanies);
+        console.groupEnd();
+  
+        productsApp.onAppReadyWithProductsData(dataProducts, dataCompanies);
+      });
+  
+    });
+  },
+  end:function(){
+    console.log('app_products : end');
+  }
 }

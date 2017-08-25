@@ -153,7 +153,7 @@ var restCalls = {
         console.log('textStatus',textStatus);
         console.log('jqXHR',jqXHR);
         console.groupEnd();
-        //appFirstObj.onCustomerRemoved();
+        productsApp.onProductRemoved();
       },
     })
     .done(function(data){
