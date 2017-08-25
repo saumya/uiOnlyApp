@@ -106,7 +106,7 @@ var productsApp = {
       var tID = eventObj.currentTarget.id; // cust_234
       var productID = tID.substr(5); //cust_ , 234
       console.log('productID',productID);
-      //restCalls.deleteProduct({ id:productID }); 
+      restCalls.deleteProduct({id:productID});
     });
     //
     console.groupEnd();

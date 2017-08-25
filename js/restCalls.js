@@ -140,6 +140,37 @@ var restCalls = {
       console.log('AJAX:addNewProduct:fail:',error);
     });
   },
+  deleteProduct: function(productID){
+    $.ajax({
+      method: "POST",
+      async: true,
+      url: uRESTConfig.apiRootURI+uRESTConfig.removeProduct,
+      data:productID,
+      dataType:'json',
+      success: function(data, textStatus, jqXHR){
+        console.group('AJAX:deleteProduct:Success');
+        console.log(data);
+        console.log('textStatus',textStatus);
+        console.log('jqXHR',jqXHR);
+        console.groupEnd();
+        //appFirstObj.onCustomerRemoved();
+      },
+    })
+    .done(function(data){
+      console.group('AJAX:deleteProduct:done');
+      console.log(data);
+      console.groupEnd();
+      //appFirstObj.onAppReadyWithCustomerData();
+      //appFirstObj.onCustomerRemoved();
+    })
+    .fail(function(error){
+      // First time it came here because of API problem
+      // It is expecting JSON data but previous API was returning only a String
+      // Once API returned JSON, it now goes to .done() and "success:"
+      // :)
+      console.log('AJAX:deleteCustomer:fail:',error);
+    });
+  },
   // ========================== / PRODUCTS =============================
   // ========================== COMPANIES =============================
   getAllCompanies: function(){
