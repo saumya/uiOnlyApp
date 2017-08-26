@@ -7,9 +7,9 @@ $(function(){
   var rootURL = "http://localhost:8888/slim/ui_app_1/";
 
   $('#id_menu_home').on('click',function(){ window.location.href = rootURL + 'home.html'; });
-  $('#id_menu_companies').on('click',function(){ window.location.href = rootURL + 'companies.html'; });
+  //$('#id_menu_companies').on('click',function(){ window.location.href = rootURL + 'companies.html'; });
   $('#id_menu_customers').on('click',function(){ window.location.href = rootURL + 'customers.html'; });
-  //$('#id_menu_products').on('click',function(){ window.location.href = rootURL + 'products.html'; });
+  $('#id_menu_products').on('click',function(){ window.location.href = rootURL + 'products.html'; });
   //Menu-End
 
   // Start Logic =========================
@@ -47,6 +47,15 @@ var companiesApp = {
     console.group('onAppReadyWithCompaniesData');
     console.log('companies',dataCompanies);
     console.groupEnd();
+
+    $('#idCompaniesList').empty();
+    var total = dataCompanies.length;
+    dataCompanies.map(function(cValue,cIndex,cArray){
+      var sHtml = "<div class='shortDetail'><div>"+cValue.id +':'+ cValue.name+"<div></div>"+cValue.note+"</div><div id=comp_"+cValue.id+" class='btnDeleteCompany'>Delete</div></div>";
+      $('#idCompaniesList').append(sHtml);
+    });
+    $("#idTotalCompanies").html(total);
+
   },
   onAppReadyWithProductsData: function(dataProducts, dataCompanies){
     console.group('onAppReadyWithProductsData');
@@ -55,17 +64,14 @@ var companiesApp = {
     //
     console.log('onGotAllCustomerData');
     // clear the old data / whole data
-    $('#idProductsList').empty();
+    $('#idCompaniesList').empty();
     // add new/fresh data
     var total = dataProducts.length;
     dataProducts.map(function(cValue,cIndex,cArray){
-      //console.log(cValue,cIndex,cArray);
-      //console.log(cValue.name);
-      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
-      $('#idProductsList').append(sHtml);
-      //$('#idCustomers').prepend(sHtml);
+      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.note+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
+      $('#idCompaniesList').append(sHtml);
     });
-    $("#idTotal").html(total);
+    $("#idTotalCompanies").html(total);
     //
     if(this.isFirstTime===true){
       this.isFirstTime = false;
