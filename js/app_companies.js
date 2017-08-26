@@ -81,17 +81,18 @@ var companiesApp = {
     // ===============================
     }
     //
-    $(".btnDeleteProduct").on('click',function(eventObj){
+    $(".btnDeleteCompany").on('click',function(eventObj){
       //debugger;
       //console.log('shortDetail:click:',eventObj);
       //console.log(eventObj.currentTarget);
       
       var tID = eventObj.currentTarget.id; // cust_234
-      var productID = tID.substr(5); //cust_ , 234
-      console.log('productID',productID);
-      restCalls.deleteProduct({id:productID});
+      var companyID = tID.substr(5); //cust_ , 234
+      console.log('companyID',companyID);
+      //restCalls.deleteProduct({id:productID});
       //var resultObjProducts = restCalls.deleteProduct({id:productID});
       //resultObjProducts.success(function(){});
+      var resultObj = restCalls.deleteCompany({id:companyID});
     });
     //
   },
@@ -107,25 +108,14 @@ var companiesApp = {
       companiesApp.onAppReadyWithCompaniesData(data);
     })
   },
-  onProductRemoved: function(){
-    console.log('onProductRemoved');
-    var resultObj = restCalls.getAllProducts();
-    resultObj.done(function(dataProducts){
-      console.group('getAllProducts:done');
-      console.log(dataProducts);
+  onCompanyRemoved: function(){
+    console.log('onCompanyRemoved');
+    var resultObj = restCalls.getAllCompanies();
+    resultObj.done(function(dataCompanies){
+      console.group('getAllCompanies:done');
+      console.log(dataCompanies);
       console.groupEnd();
-      //productsApp.ready();
-      //productsApp.onAppReadyWithProductsData(data);
-  
-      var resultObjCompanies = restCalls.getAllCompanies();
-      resultObjCompanies.done(function(dataCompanies){
-        console.group('getAllCompanies:done');
-        console.log(dataCompanies);
-        console.groupEnd();
-  
-        productsApp.onAppReadyWithProductsData(dataProducts, dataCompanies);
-      });
-  
+      companiesApp.onAppReadyWithCompaniesData(dataCompanies);
     });
   },
   end:function(){

@@ -140,12 +140,12 @@ var restCalls = {
       console.log('AJAX:addNewProduct:fail:',error);
     });
   },
-  deleteProduct: function(productID){
+  deleteProduct: function(productObj){
     $.ajax({
       method: "POST",
       async: true,
       url: uRESTConfig.apiRootURI+uRESTConfig.removeProduct,
-      data:productID,
+      data:productObj,
       dataType:'json',
       success: function(data, textStatus, jqXHR){
         console.group('AJAX:deleteProduct:Success');
@@ -224,6 +224,39 @@ var restCalls = {
     })
     .fail(function(error){
       console.log('AJAX:addNewCompany:fail:',error);
+    });
+  },
+  deleteCompany: function(companyObj){
+    console.log('deleteCompany: ',companyObj);
+    $.ajax({
+      method: "POST",
+      async: true,
+      url: uRESTConfig.apiRootURI+uRESTConfig.removeCompany,
+      data:companyObj,
+      dataType:'json',
+      success: function(data, textStatus, jqXHR){
+        console.group('AJAX:deleteCompany:Success');
+        console.log(data);
+        console.log('textStatus',textStatus);
+        console.log('jqXHR',jqXHR);
+        console.groupEnd();
+        //
+        companiesApp.onCompanyRemoved();
+      },
+    })
+    .done(function(data){
+      console.group('AJAX:deleteCompany:done');
+      console.log(data);
+      console.groupEnd();
+      //appFirstObj.onAppReadyWithCustomerData();
+      //appFirstObj.onCustomerRemoved();
+    })
+    .fail(function(error){
+      // First time it came here because of API problem
+      // It is expecting JSON data but previous API was returning only a String
+      // Once API returned JSON, it now goes to .done() and "success:"
+      // :)
+      console.log('AJAX:deleteCustomer:fail:',error);
     });
   },
   // ========================== / COMPANIES =============================
