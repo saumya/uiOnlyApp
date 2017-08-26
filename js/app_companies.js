@@ -55,25 +55,8 @@ var companiesApp = {
       $('#idCompaniesList').append(sHtml);
     });
     $("#idTotalCompanies").html(total);
-
-  },
-  onAppReadyWithProductsData: function(dataProducts, dataCompanies){
-    console.group('onAppReadyWithProductsData');
-    console.log('products',dataProducts);
-    console.log('companies',dataCompanies);
-    //
-    console.log('onGotAllCustomerData');
-    // clear the old data / whole data
-    $('#idCompaniesList').empty();
-    // add new/fresh data
-    var total = dataProducts.length;
-    dataProducts.map(function(cValue,cIndex,cArray){
-      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.note+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
-      $('#idCompaniesList').append(sHtml);
-    });
-    $("#idTotalCompanies").html(total);
-    //
-    if(this.isFirstTime===true){
+    // ===============================
+        if(this.isFirstTime===true){
       this.isFirstTime = false;
       console.log('============== Adding EventHandlers : Start ==============');
 
@@ -87,28 +70,16 @@ var companiesApp = {
         $('#idPCompanyNameId').append(sHtml); 
       });
 
-      $("#idBtnAddProduct").on('click',function(event){
-        var pName = $("#idPName").val();
-        var pPrice = $("#idPPrice").val();
-        //var pCompanyId = $("#idPCompanyId").val();
-        var pCompanyId = $("#idPCompanyNameId").val();
-        console.log( pName,pPrice,pCompanyId );
+      $("#idBtnAddCompany").on('click',function(event){
+        var cName = $("#idUName").val();
+        var cNote = $("#idUNote").val();
+        console.log( cName,cNote );
         
-        var ajaxResultObj = restCalls.addNewProduct({
-          product_name:pName,
-          product_price:pPrice,
-          company_id:pCompanyId
-        });
-
-        /*
-        var aaa = $("#idPCompanyNameId");
-        aaa.append("<option value="value1">Value 1</option>");
-        */
-
+        var ajaxResultObj = restCalls.addNewCompany({ cname:cName, cnote:cNote });
+        
       });
-      console.log('============== Adding EventHandlers : End ==============');
-    } 
-
+    // ===============================
+    }
     //
     $(".btnDeleteProduct").on('click',function(eventObj){
       //debugger;
@@ -123,18 +94,17 @@ var companiesApp = {
       //resultObjProducts.success(function(){});
     });
     //
-    console.groupEnd();
   },
-  onProductAdded: function(){
-    console.log('onProductAdded');
+  onNewCompanyAdded: function(){
+    console.log('onNewCompanyAdded');
 
-    var resultObj = restCalls.getAllProducts();
+    var resultObj = restCalls.getAllCompanies();
     resultObj.done(function(data){
       console.group('getAllProducts:done');
       console.log(data);
       console.groupEnd();
       //productsApp.ready();
-      productsApp.onAppReadyWithProductsData(data);
+      companiesApp.onAppReadyWithCompaniesData(data);
     })
   },
   onProductRemoved: function(){
