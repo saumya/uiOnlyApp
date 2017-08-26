@@ -5,20 +5,19 @@ $(function(){
   
   //Menu-Start
   var rootURL = "http://localhost:8888/slim/ui_app_1/";
-  $('#id_menu_home').on('click',function(){
-    //ref: https://stackoverflow.com/questions/503093/how-to-redirect-to-another-webpage
-    //window.location.replace('http://msn.com');
-    window.location.href = rootURL + 'home.html';
-  });
+
+  $('#id_menu_home').on('click',function(){ window.location.href = rootURL + 'home.html'; });
   $('#id_menu_companies').on('click',function(){ window.location.href = rootURL + 'companies.html'; });
   $('#id_menu_customers').on('click',function(){ window.location.href = rootURL + 'customers.html'; });
   //$('#id_menu_products').on('click',function(){ window.location.href = rootURL + 'products.html'; });
   //Menu-End
 
   // Start Logic =========================
-  var resultObj = restCalls.getAllProducts();
+
+  var resultObj = restCalls.getAllCompanies();
+
   resultObj.done(function(dataProducts){
-    console.group('getAllProducts:done');
+    console.group('getAllCompanies:done');
     console.log(dataProducts);
     console.groupEnd();
     //productsApp.ready();
@@ -29,23 +28,25 @@ $(function(){
       console.group('getAllCompanies:done');
       console.log(dataCompanies);
       console.groupEnd();
-
-      productsApp.onAppReadyWithProductsData(dataProducts, dataCompanies);
+      //companiesApp.onAppReadyWithProductsData(dataProducts, dataCompanies);
+      companiesApp.onAppReadyWithCompaniesData(dataCompanies);
     });
-
   });
-
-  
   //debugger;
   // End Logic ===========================
 });//END: jQuery.ready()
 
 // Application Logic
 
-var productsApp = {
+var companiesApp = {
   isFirstTime: true,
   ready: function(){
     console.log('productsApp:ready');
+  },
+  onAppReadyWithCompaniesData: function(dataCompanies){
+    console.group('onAppReadyWithCompaniesData');
+    console.log('companies',dataCompanies);
+    console.groupEnd();
   },
   onAppReadyWithProductsData: function(dataProducts, dataCompanies){
     console.group('onAppReadyWithProductsData');
