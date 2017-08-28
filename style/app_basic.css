@@ -167,3 +167,14 @@ input{
   background-color: #FF0000;
   color: #FFFFFF;
 }
+
+/* Button */
+.clsBtnGeneral{
+  width: 100%;
+  height: 3em;
+  background-color: #B8D1FF;
+}
+.clsBtnGeneral:hover{
+  background-color: #1FBBFF;
+  color: #FFFFFF;
+}
