@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<title>My Store /Products</title>
+
+	<link rel="stylesheet" href="style/normalize.css">
+	<link rel="stylesheet" href="style/app_basic.css">
+
+	<script type="text/javascript" src="js/libs/jquery-3.2.1.js"></script>
+</head>
+<body>
+
+	<ul id="id_menu">
+		<li id="id_menu_home">Home</li>
+		<li id="id_menu_companies">Companies</li>
+		<li id="id_menu_customers">Customers</li>
+		<li id="id_menu_products" class="active_menu">Products</li>
+	</ul>
+
+	<div id="dApplication">
+			<h2> Products <span id="idTotal"></span> / </h2> 
+			<h2> Companies <span id="idTotalCompanies"></span> </h2>
+		<div id="idProducts">
+				<div id="idProductsList"></div>
+		</div>
+		
+		<div id="idCustomerEntryForm">
+			<div class="formDiv">
+					<label for="name">Product Name:</label> <input type="text" id="idPName" name="product_name">
+			</div>
+			<div class="formDiv">
+					<label for="phone">Product Price:</label> <input type="text" id="idPPrice" name="product_price">
+			</div>
+			<!--
+			<div class="formDiv">
+					<label for="address">Company Id:</label> <input type="text" id="idPCompanyId" name="product_company_id">
+			</div>
+			-->
+			<div class="formDiv">
+					<label for="address">Company:</label> 
+					<select id="idPCompanyNameId" name="select">
+						<!-- To be filled by JS data -->
+						<!--
+							<option value="value1">Value 1</option>
+						-->
+					</select>
+			</div>
+			<div class="formDiv">
+					<input type="Button" id="idBtnAddProduct" name="add_product" value="Add New Product">
+			</div>
+		</div>
+	
+	</div>
+	
+	<script src="js/uRESTConfig.js"></script>
+	<script src="js/restCalls.js"></script>
+	<!-- <script src="js/first.js"></script> -->
+	<script src="js/app_products.js"></script>
+</body>
+</html>

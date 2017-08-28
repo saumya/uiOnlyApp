@@ -168,9 +168,13 @@ input{
   color: #FFFFFF;
 }
 
-/* Button */
+/* Home Button */
+.clsHomeBtnContainer{
+  display: inline-block;
+}
 .clsBtnGeneral{
-  width: 100%;
+  min-width: 1em; /* overridden Style */
+  width: 12em;
   height: 3em;
   background-color: #B8D1FF;
 }
