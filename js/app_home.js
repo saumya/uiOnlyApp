@@ -12,7 +12,9 @@ $(function(){
   $('#id_menu_companies').on('click',function(){ window.location.href = rootURL + 'companies.html'; });
   $('#id_menu_customers').on('click',function(){ window.location.href = rootURL + 'customers.html'; });
   $('#id_menu_products').on('click',function(){ window.location.href = rootURL + 'products.html'; });
-  // Get the Customers data
+  //
+  $('#idBtnProductBuy').on('click',function(){ window.location.href = rootURL + 'products_buy.html'; });
+  $('#idBtnProductSell').on('click',function(){ window.location.href = rootURL + 'products_sell.html'; });
   //restCalls.getAllCustomers();
   console.log(appHome.getVersion());
 });//END: jQuery.ready()
