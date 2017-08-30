@@ -5,8 +5,8 @@ UI for [this API][1] application.
 
 TODO:
  - Prescriptions : Add, Delete 
- - Sold Product : Add, Delete
- - Bought Product : Add, Delete
+ - Sold Product : Delete
+ - Bought Product : Delete
 
 
 
