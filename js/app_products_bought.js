@@ -16,25 +16,24 @@ $(function(){
   //Menu-End
 
   // Start Logic =========================
-  /*
+  
   var resultObj = restCalls.getAllProducts();
   resultObj.done(function(dataProducts){
     console.group('getAllProducts:done');
     console.log(dataProducts);
     console.groupEnd();
-    //productsApp.ready();
-    //productsApp.onAppReadyWithProductsData(data);
-
+    productsBoughtApp.onAppReadyWithProductsData(dataProducts);
+    /*
     var resultObjCompanies = restCalls.getAllCompanies();
     resultObjCompanies.done(function(dataCompanies){
       console.group('getAllCompanies:done');
       console.log(dataCompanies);
       console.groupEnd();
 
-      productsApp.onAppReadyWithProductsData(dataProducts, dataCompanies);
+      //productsApp.onAppReadyWithProductsData(dataProducts, dataCompanies);
     });
-    
-  });*/
+    */
+  });
 
   
   //debugger;
@@ -57,20 +56,22 @@ var productsBoughtApp = {
     // clear the old data / whole data
     $('#idProductsList').empty();
     // add new/fresh data
-    var total = dataProducts.length;
+    var totalProduct = dataProducts.length;
     dataProducts.map(function(cValue,cIndex,cArray){
       //console.log(cValue,cIndex,cArray);
       //console.log(cValue.name);
-      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
+      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.id+'::'+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
       $('#idProductsList').append(sHtml);
       //$('#idCustomers').prepend(sHtml);
+      var sHtml = '<option value="'+cValue.id+'">'+cValue.name+'</option>';
+      $('#idProductNameId').append(sHtml);
     });
-    $("#idTotal").html(total);
+    $("#idTotal").html(totalProduct);
     //
     if(this.isFirstTime===true){
       this.isFirstTime = false;
       console.log('============== Adding EventHandlers : Start ==============');
-
+      /*
       // Filling out the Company Selections
       console.log('==========================');
       var totalCompanies = dataCompanies.length;
@@ -80,7 +81,8 @@ var productsBoughtApp = {
         var sHtml = '<option value="'+cValue.id+'">'+cValue.name+'</option>';
         $('#idPCompanyNameId').append(sHtml); 
       });
-
+      */
+      /*
       $("#idBtnAddProduct").on('click',function(event){
         var pName = $("#idPName").val();
         var pPrice = $("#idPPrice").val();
@@ -93,15 +95,18 @@ var productsBoughtApp = {
           product_price:pPrice,
           company_id:pCompanyId
         });
-
-        /*
+      */
+      /*
         var aaa = $("#idPCompanyNameId");
         aaa.append("<option value="value1">Value 1</option>");
-        */
-
+      */
+      $('#idProductNameId').on('change',function(eventObject){
+        console.log(eventObject);
+        console.log(this.value);
+        //debugger;
       });
       console.log('============== Adding EventHandlers : End ==============');
-    } 
+    }
 
     //
     $(".btnDeleteProduct").on('click',function(eventObj){
