@@ -1,4 +1,4 @@
-console.log('app_products_bought.js');
+console.log('app_products_sold.js');
 //jQuery Entry - jQuery.ready()
 $(function(){
   console.log('loaded');
@@ -22,7 +22,7 @@ $(function(){
     //console.group('getAllProducts:done');
     //console.log(dataProducts);
     //console.groupEnd();
-    productsBoughtApp.onAppReadyWithProductsData(dataProducts);
+    productsSoldApp.onAppReadyWithProductsData(dataProducts);
   });
   //debugger;
   // End Logic ===========================
@@ -30,7 +30,7 @@ $(function(){
 
 // Application Logic
 
-var productsBoughtApp = {
+var productsSoldApp = {
   isFirstTime: true,
   allProducts:'Nothing',
   ready: function(){
@@ -67,17 +67,19 @@ var productsBoughtApp = {
       // saving SCOPE in a variable
       var that = this;
       //
-      $("#idBtnAddBoughtProduct").on('click',{scope:that},function(event){
+      $("#idBtnAddSoldProduct").on('click',{scope:that},function(event){
         var scope = event.data.scope;
         var pId = $('#idProductNameId').val();
         var pPrice = $("#idPPrice").val();
         var pDate = $("#idDate").val();
-        //console.log( pId,pPrice,pDate );
-        var ajaxResultObj = restCalls.addBuyProduct({
-          bought_id:pId,
-          bought_quantity:pPrice,
-          bought_date:pDate
+        console.log( pId,pPrice,pDate );
+        
+        var ajaxResultObj = restCalls.addSellProduct({
+          sold_id:pId,
+          sold_quantity:pPrice,
+          sold_date:pDate
         });
+        
       });
       //sending 'scope' to Jquery-event handler
       $('#idProductNameId').on('change',{scope:that},function(eventObject){
@@ -97,9 +99,9 @@ var productsBoughtApp = {
     }
     console.groupEnd();
   },
-  onBuySuccess: function(){
-    console.log('onBuySuccess');
-    alert('Successfuly Bought!');
+  onSellSuccess: function(){
+    console.log('onSellSuccess');
+    alert('Successfuly Sold!');
   },
   end:function(){
     console.log('app_products : end');
