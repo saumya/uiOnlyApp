@@ -167,6 +167,10 @@ var productsBoughtApp = {
     */
     console.groupEnd();
   },
+  onBuySuccess: function(){
+    console.log('onBuySuccess');
+    alert('Successfuly Bought!');
+  },
   onProductAdded: function(){
     console.log('onProductAdded');
 

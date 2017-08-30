@@ -277,6 +277,7 @@ var restCalls = {
         //appFirstObj.onGotAllCustomerData(data);
         //appFirstObj.onNewCustomerAdded();
         //companiesApp.onNewCompanyAdded();
+        productsBoughtApp.onBuySuccess();
       },
     })
     .done(function(data){
