@@ -11,6 +11,7 @@ var uRESTConfig = {
   allCompanies: "v1.0.0/read/company",
   addCompany: "v1.0.0/add/company",
   removeCompany: "v1.0.0/delete/company",
+  buyProduct:"v1.0.0/add/product_bought",
   nothing:"",
 };
 //END - Application Object

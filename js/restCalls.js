@@ -260,6 +260,36 @@ var restCalls = {
     });
   },
   // ========================== / COMPANIES =============================
+  // ==========================  BUY Product =============================
+  addBuyProduct: function(dataObj){
+    $.ajax({
+      method: "POST",
+      async: true,
+      url: uRESTConfig.apiRootURI+uRESTConfig.buyProduct,
+      data:dataObj,
+      dataType:'json',
+      success: function(data, textStatus, jqXHR){
+        console.group('AJAX:addBuyProduct:Success');
+        console.log(data);
+        console.log('textStatus',textStatus);
+        console.log('jqXHR',jqXHR);
+        console.groupEnd();
+        //appFirstObj.onGotAllCustomerData(data);
+        //appFirstObj.onNewCustomerAdded();
+        //companiesApp.onNewCompanyAdded();
+      },
+    })
+    .done(function(data){
+      console.group('AJAX:addBuyProduct:done');
+      console.log(data);
+      console.groupEnd();
+      //appFirstObj.onAppReadyWithCustomerData();
+    })
+    .fail(function(error){
+      console.log('AJAX:addBuyProduct:fail:',error);
+    });
+  },
+  // ========================== / BUY Product =============================
   end: function(){
     console.log('end : restCalls');
   }

@@ -64,13 +64,14 @@ var productsBoughtApp = {
     dataProducts.map(function(cValue,cIndex,cArray){
       //console.log(cValue,cIndex,cArray);
       //console.log(cValue.name);
-      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.id+'::'+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
+      //var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.id+'::'+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
+      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.id+'::'+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div></div>";
       $('#idProductsList').append(sHtml);
       //$('#idCustomers').prepend(sHtml);
       var sHtml = '<option value="'+cValue.id+'">'+cValue.name+'</option>';
       $('#idProductNameId').append(sHtml);
     });
-    $("#idTotal").html(totalProduct);
+    //$("#idTotal").html(totalProduct);
     //
     if(this.isFirstTime===true){
       this.isFirstTime = false;
@@ -104,8 +105,30 @@ var productsBoughtApp = {
         var aaa = $("#idPCompanyNameId");
         aaa.append("<option value="value1">Value 1</option>");
       */
+
+      //idBtnAddBoughtProduct
+      // $("#idDate").val("2016-09-12");
+      // saving SCOPE in a variable
       var that = this;
-      //sending 'scope' to event handler
+      //
+      $("#idBtnAddBoughtProduct").on('click',{scope:that},function(event){
+        var scope = event.data.scope;
+        //var pName = $("#idPName").val();
+        var pId = $('#idProductNameId').val();
+        var pPrice = $("#idPPrice").val();
+        var pDate = $("#idDate").val();
+        //var pCompanyId = $("#idPCompanyId").val();
+        //var pCompanyId = $("#idPCompanyNameId").val();
+        console.log( pId,pPrice,pDate );
+        
+        var ajaxResultObj = restCalls.addBuyProduct({
+          bought_id:pId,
+          bought_quantity:pPrice,
+          bought_date:pDate
+        });
+        
+      });
+      //sending 'scope' to Jquery-event handler
       $('#idProductNameId').on('change',{scope:that},function(eventObject){
         //console.log(eventObject);
         //console.log(this.value);
@@ -116,10 +139,10 @@ var productsBoughtApp = {
         //console.log('allProducts',allProducts);
         //debugger;
         allProducts.map(function(cValue,cIndex,cArray){
-          console.log(cIndex,cValue);
-          console.log(currentValue);
+          //console.log(cIndex,cValue);
+          //console.log(currentValue);
           if(cValue.id === currentValue){
-            console.log('====== MATCH ======');
+            //console.log('====== MATCH ======');
             $('#idProductPrice').html(cValue.price);
             return true;
           }
@@ -128,7 +151,7 @@ var productsBoughtApp = {
       console.log('============== Adding EventHandlers : End ==============');
     }
 
-    //
+    /*
     $(".btnDeleteProduct").on('click',function(eventObj){
       //debugger;
       //console.log('shortDetail:click:',eventObj);
@@ -141,7 +164,7 @@ var productsBoughtApp = {
       //var resultObjProducts = restCalls.deleteProduct({id:productID});
       //resultObjProducts.success(function(){});
     });
-    //
+    */
     console.groupEnd();
   },
   onProductAdded: function(){
