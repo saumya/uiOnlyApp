@@ -44,13 +44,17 @@ $(function(){
 
 var productsBoughtApp = {
   isFirstTime: true,
+  allProducts:'Nothing',
   ready: function(){
     console.log('productsApp:ready');
   },
-  onAppReadyWithProductsData: function(dataProducts, dataCompanies){
+  onAppReadyWithProductsData: function(dataProducts){
     console.group('onAppReadyWithProductsData');
     console.log('products',dataProducts);
-    console.log('companies',dataCompanies);
+    console.log('allProducts',this.allProducts);
+    this.allProducts = dataProducts;
+    console.log('allProducts',this.allProducts);
+    //console.log('companies',dataCompanies);
     //
     console.log('onGotAllCustomerData');
     // clear the old data / whole data
@@ -100,10 +104,26 @@ var productsBoughtApp = {
         var aaa = $("#idPCompanyNameId");
         aaa.append("<option value="value1">Value 1</option>");
       */
-      $('#idProductNameId').on('change',function(eventObject){
-        console.log(eventObject);
-        console.log(this.value);
+      var that = this;
+      //sending 'scope' to event handler
+      $('#idProductNameId').on('change',{scope:that},function(eventObject){
+        //console.log(eventObject);
+        //console.log(this.value);
+        var currentValue = this.value;
+        var allEventData = eventObject.data;
+        var scope = allEventData.scope;
+        var allProducts = scope.allProducts;
+        //console.log('allProducts',allProducts);
         //debugger;
+        allProducts.map(function(cValue,cIndex,cArray){
+          console.log(cIndex,cValue);
+          console.log(currentValue);
+          if(cValue.id === currentValue){
+            console.log('====== MATCH ======');
+            $('#idProductPrice').html(cValue.price);
+            return true;
+          }
+        });
       });
       console.log('============== Adding EventHandlers : End ==============');
     }
