@@ -33,6 +33,16 @@ var appHome = {
     console.log('onGotAllCustomerData:',resultObj);
     var total = resultObj.length;
     $('#idTotal_Cust').html(total);
+    var resultObjProducts = restCalls.getAllProducts();
+    resultObjProducts.done(function(resultData){
+      var totalProducts = resultData.length;
+      $('#idTotal_Products').html(totalProducts);
+    });
+    var resultObjCompanies = restCalls.getAllCompanies();
+    resultObjCompanies.done(function(resultdata){
+      var totalCompanies = resultdata.length;
+      $('#idTotal_Companies').html(totalCompanies);
+    });
   },
   onAppReadyWithCustomerData: function(){
     console.log('%c Just a callback. Doing Nothing. ','background: #222; color: #bada55');
