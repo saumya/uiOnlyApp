@@ -2,6 +2,10 @@ console.log('first.js');
 //START - Application Object
 var appFirstObj = {
   isFirstTime:true,
+  init: function(){
+    var that = this;
+    restCalls.getAllCustomers(that);
+  },
   onGotAllCustomerData: function(dataObj){
     console.log('onGotAllCustomerData');
     // clear the old data / whole data

@@ -13,5 +13,6 @@ $(function(){
   $('#id_menu_customers').on('click',function(){ window.location.href = rootURL + 'customers.html'; });
   $('#id_menu_products').on('click',function(){ window.location.href = rootURL + 'products.html'; });
   // Get the Customers data
-  restCalls.getAllCustomers();
+  //restCalls.getAllCustomers();
+  appFirstObj.init();
 });//END: jQuery.ready()

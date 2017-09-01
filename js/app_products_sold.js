@@ -12,7 +12,7 @@ $(function(){
   });
   $('#id_menu_companies').on('click',function(){ window.location.href = rootURL + 'companies.html'; });
   $('#id_menu_customers').on('click',function(){ window.location.href = rootURL + 'customers.html'; });
-  //$('#id_menu_products').on('click',function(){ window.location.href = rootURL + 'products.html'; });
+  $('#id_menu_products').on('click',function(){ window.location.href = rootURL + 'products.html'; });
   //Menu-End
 
   // Start Logic =========================

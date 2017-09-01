@@ -1,7 +1,7 @@
 console.log('restCalls.js');
 var restCalls = {
   // GET: All customers
-  getAllCustomers: function(){
+  getAllCustomers: function(scopeRef){
     $.ajax({
       method: "GET",
       url: uRESTConfig.apiRootURI+uRESTConfig.customersURI,
@@ -13,14 +13,16 @@ var restCalls = {
         console.log('textStatus',textStatus);
         console.log('jqXHR',jqXHR);
         console.groupEnd();
-        appFirstObj.onGotAllCustomerData(data);
+        //appFirstObj.onGotAllCustomerData(data);
+        scopeRef.onGotAllCustomerData(data);
       },
     })
     .done(function(data){
       console.group('AJAX:getAllCustomers:done');
       console.log(data);
       console.groupEnd();
-      appFirstObj.onAppReadyWithCustomerData();
+      //appFirstObj.onAppReadyWithCustomerData();
+      scopeRef.onAppReadyWithCustomerData();
     })
     .fail(function(error){
       console.log('AJAX:getAllCustomers:fail:',error);
