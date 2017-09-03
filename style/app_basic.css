@@ -85,12 +85,17 @@ html {
 }
 label{
   display: inline-block;
-  min-width: 10em;
-  width: 10em;
+  min-width: 6em;
 }
 input{
   min-width: 14em;
+  width: 60%;
 }
+select{
+  width: 60%;
+  margin-bottom: 0.5em;
+}
+
 .formDiv{
   padding: 0.2em;
 }
@@ -189,6 +194,14 @@ input{
 .btnDeleteCompany:hover{
   background-color: #FF0000;
   color: #FFFFFF;
+}
+
+#idProductPrice{
+  width: 60%;
+  background-color: #FFFFFF;
+  font-size: 1.2em;
+  text-align: center;
+  height: 1.2em;
 }
 
 /* Home Button */
