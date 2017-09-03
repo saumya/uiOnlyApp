@@ -51,9 +51,12 @@ var productsSoldApp = {
     var totalProduct = dataProducts.length;
     dataProducts.map(function(cValue,cIndex,cArray){
       //var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.id+'::'+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
+      /*
       // removed the DELETE button
-      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.id+'::'+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div></div>";
+      //var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.id+'::'+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div></div>";
+      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.price+"</div></div>";
       $('#idProductsList').append(sHtml);
+      */
       //$('#idCustomers').prepend(sHtml);
       var sHtml = '<option value="'+cValue.id+'">'+cValue.name+'</option>';
       $('#idProductNameId').append(sHtml);
