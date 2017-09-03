@@ -59,6 +59,9 @@ var productsSoldApp = {
       $('#idProductNameId').append(sHtml);
     });
     //$("#idTotal").html(totalProduct);
+    //var resultObj = restCalls.getAllProducts();
+    var that = this;
+    var resultForAllCustomers = restCalls.getAllCustomers(that);
     //
     if(this.isFirstTime===true){
       this.isFirstTime = false;
@@ -72,14 +75,17 @@ var productsSoldApp = {
         var pId = $('#idProductNameId').val();
         var pPrice = $("#idPPrice").val();
         var pDate = $("#idDate").val();
-        console.log( pId,pPrice,pDate );
+        var pPersonId = $('#idPersonNameId').val();
+        console.log( pId,pPrice,pDate,pPersonId );
         
         var ajaxResultObj = restCalls.addSellProduct({
           sold_id:pId,
+          sold_to_person_id:pPersonId,
           sold_quantity:pPrice,
           sold_date:pDate
         });
         
+
       });
       //sending 'scope' to Jquery-event handler
       $('#idProductNameId').on('change',{scope:that},function(eventObject){
@@ -98,6 +104,24 @@ var productsSoldApp = {
       console.log('============== Adding EventHandlers : End ==============');
     }
     console.groupEnd();
+  },
+  onGotAllCustomerData: function(resultData){
+    console.log('onGotAllCustomerData');
+    console.log(resultData);
+    resultData.map(function(cValue,cIndex,cArray){
+      //var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.id+'::'+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div><div id=cust_"+cValue.id+" class='btnDeleteProduct'>Delete</div></div>";
+      // removed the DELETE button
+      //var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.id+'::'+cValue.name+":"+cValue.price+"</div><div>Company Id:"+cValue.id_company+"</div></div>";
+      //$('#idProductsList').append(sHtml);
+      //$('#idCustomers').prepend(sHtml);
+      var sHtml = '<option value="'+cValue.id+'">'+cValue.name+'</option>';
+      $('#idPersonNameId').append(sHtml);
+    });
+  },
+  onAppReadyWithCustomerData: function(){
+    var infoCSS = 'background: #222; color: #bada55';
+    console.log('%c onAppReadyWithCustomerData. ',infoCSS);
+    console.log('%c Just a callback. Doing Nothing. ',infoCSS);
   },
   onSellSuccess: function(){
     console.log('onSellSuccess');
