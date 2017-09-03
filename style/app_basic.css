@@ -46,11 +46,13 @@ html {
   padding: 1em;
 }
 .content{
-  width: 100%;
+  width: 40%;
   min-height: 10em;
   background-color: #E5CEE8;
   margin-top: 0.5em;
-  padding-left: 1em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  padding-left: 0.5em;
 }
 /* Customers */
 #idCustomers{
