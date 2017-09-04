@@ -187,10 +187,9 @@ select{
 
 #idProductPrice{
   width: 60%;
-  background-color: #FFFFFF;
   font-size: 1.2em;
-  text-align: center;
-  height: 1.2em;
+  height: 0.9em;
+  font-weight: 900;
 }
 
 /* ************************** Home Button *********** */
