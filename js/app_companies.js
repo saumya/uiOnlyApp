@@ -51,7 +51,7 @@ var companiesApp = {
     $('#idCompaniesList').empty();
     var total = dataCompanies.length;
     dataCompanies.map(function(cValue,cIndex,cArray){
-      var sHtml = "<div class='shortDetail'><div>"+cValue.id +':'+ cValue.name+"<div></div>"+cValue.note+"</div><div id=comp_"+cValue.id+" class='btnDelete'>Delete</div></div>";
+      var sHtml = "<div class='shortDetail'><div>"+ cValue.name+"<div></div>"+cValue.note+"</div><div id=comp_"+cValue.id+" class='btnDelete'>Delete</div></div>";
       $('#idCompaniesList').append(sHtml);
     });
     $("#idTotalCompanies").html(total);
