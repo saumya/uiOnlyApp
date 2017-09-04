@@ -16,7 +16,7 @@ var appFirstObj = {
     dataObj.map(function(cValue,cIndex,cArray){
       //console.log(cValue,cIndex,cArray);
       //console.log(cValue.name);
-      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.phone+"</div><div>"+cValue.address+"</div><div id=cust_"+cValue.id+" class='btnDeleteCustomer'>Delete</div></div>";
+      var sHtml = "<div id=cust_"+cValue.id+" class='shortDetail'><div>"+cValue.name+":"+cValue.phone+"</div><div>"+cValue.address+"</div><div id=cust_"+cValue.id+" class='btnDelete'>Delete</div></div>";
       $('#idCustomersList').append(sHtml);
       //$('#idCustomers').prepend(sHtml);
     });
