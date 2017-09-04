@@ -1,5 +1,6 @@
-console.log('first.js');
-//START - Application Object
+console.log('first.js : Customers');
+// ================== Customers =======================
+//START - 
 var appFirstObj = {
   isFirstTime:true,
   init: function(){
@@ -69,10 +70,12 @@ var appFirstObj = {
     console.groupEnd();
   },
   onNewCustomerAdded: function(){
-    restCalls.getAllCustomers();
+    var that = this;
+    restCalls.getAllCustomers(that);
   },
   onCustomerRemoved: function(){
-    restCalls.getAllCustomers();
+    var that = this;
+    restCalls.getAllCustomers(that);
   },
   endApp: function(){
     console.log('End Application');

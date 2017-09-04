@@ -1,4 +1,5 @@
 console.log('app.js');
+// ======================= CUSTOMERS =====================
 //jQuery Entry - jQuery.ready()
 $(function(){
   console.log('loaded');
@@ -10,7 +11,7 @@ $(function(){
     window.location.href = rootURL + 'home.html';
   });
   $('#id_menu_companies').on('click',function(){ window.location.href = rootURL + 'companies.html'; });
-  $('#id_menu_customers').on('click',function(){ window.location.href = rootURL + 'customers.html'; });
+  //$('#id_menu_customers').on('click',function(){ window.location.href = rootURL + 'customers.html'; });
   $('#id_menu_products').on('click',function(){ window.location.href = rootURL + 'products.html'; });
   // Get the Customers data
   //restCalls.getAllCustomers();
