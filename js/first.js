@@ -55,7 +55,7 @@ var appFirstObj = {
     }
 
     //$(".shortDetail").on('click',function(eventObj){
-    $(".btnDeleteCustomer").on('click',function(eventObj){
+    $(".btnDelete").on('click',function(eventObj){
       //debugger;
       //console.log('shortDetail:click:',eventObj);
       //console.log(eventObj.currentTarget);

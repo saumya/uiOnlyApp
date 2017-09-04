@@ -103,7 +103,7 @@ var productsApp = {
     } 
 
     //
-    $(".btnDeleteProduct").on('click',function(eventObj){
+    $(".btnDelete").on('click',function(eventObj){
       //debugger;
       //console.log('shortDetail:click:',eventObj);
       //console.log(eventObj.currentTarget);
