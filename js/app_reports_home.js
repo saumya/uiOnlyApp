@@ -18,18 +18,18 @@ $(function(){
   $('#idBtnReports').on('click',function(){ window.location.href = rootURL + 'reports_home.html'; });
   //
   //restCalls.getAllCustomers();
-  console.log('%c version-' + appHome.getVersion().version +' ','background: #F00; color: #FFF');
-  appHome.init();
+  console.log('%c version-' + appReportHome.getVersion().version +' ','background: #F00; color: #FFF');
+  appReportHome.init();
 });//END: jQuery.ready()
 
-var appHome = {
+var appReportHome = {
   getVersion:function(){
     return {'version':'1.0.0'};
   },
   init: function(){
     console.log('appHome:init');
     var that = this;
-    restCalls.getAllCustomers(that);
+    //restCalls.getAllCustomers(that);
   },
   onGotAllCustomerData: function(resultObj){
     console.log('onGotAllCustomerData:',resultObj);

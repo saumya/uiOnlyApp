@@ -196,6 +196,7 @@ select{
 /* ************************** Home Button *********** */
 .clsHomeBtnContainer{
   display: inline-block;
+  padding: 0.2em;
 }
 .clsBtnGeneral{
   min-width: 1em; /* overridden Style */
@@ -229,4 +230,13 @@ select{
   width: 90%;
   height: 18em;
   overflow: scroll;
+}
+
+/* ========================== REPORT ========================== */
+
+#idAppReport{
+  width: 100%;
+  min-height: 20em;
+  margin: 0.4em;
+  background-color: #EBFFEB;
 }
