@@ -36,6 +36,7 @@ html {
   flex-wrap: wrap;*/
   flex-flow: row wrap;
   justify-content: center;
+  padding-bottom: 1em;
 }
 
 /* *********************************** Home ******************** */
@@ -221,4 +222,11 @@ select{
 .btnDelete:hover{
   background-color: #FF0000;
   color: #FFFFFF;
+}
+
+/* *************** Scroll Container **************** */
+.scrollContainerForList_1 {
+  width: 90%;
+  height: 18em;
+  overflow: scroll;
 }
