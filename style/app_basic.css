@@ -244,8 +244,14 @@ select{
   height: 20em;
   overflow: scroll;
 }
+.shortDetailDiv{
+  padding: 1em;
+  background-color: #A3E3FE;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
 .sDetails{
   display: inline-block;
-  width: 6em;
+  width: 20%;
   text-align: center;
 }

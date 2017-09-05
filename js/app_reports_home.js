@@ -113,7 +113,7 @@ var appReportHome = {
       var i = 0; //products
       var j = 0; //Customers
       var k = 0; //Companies
-      sHtml += "<div id="+cValue.id+" class='shortDetail'> <div> <span class='sDetails'>"+cValue.s_date+"</span><span class='sDetails'>"+cValue.quantity+"</span>";
+      sHtml += "<div id="+cValue.id+" class='shortDetailDiv'> <span class='sDetails'>"+cValue.s_date+"</span><span class='sDetails'>"+cValue.quantity+"</span>";
       //
       for(i;i<that.allData.productsData.length;i++){
         //console.log(cValue.product_id,that.allData.productsData[i]);
@@ -144,7 +144,7 @@ var appReportHome = {
           break;
         }
       }
-      sHtml+='</div></div>';
+      sHtml+='</div>';
 
       $('#id_all_sold').append(sHtml);
       //
