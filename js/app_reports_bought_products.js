@@ -17,12 +17,11 @@ $(function(){
   $('#idBtnProductSell').on('click',function(){ window.location.href = rootURL + 'products_sell.html'; });
   $('#idBtnReports').on('click',function(){ window.location.href = rootURL + 'reports_home.html'; });
   //
-  //restCalls.getAllCustomers();
-  console.log('%c version-' + appReportHome.getVersion().version +' ','background: #F00; color: #FFF');
-  appReportHome.init();
+  appBoughtReport.logVersion();
+  appBoughtReport.init();
 });//END: jQuery.ready()
 
-var appReportHome = {
+var appBoughtReport = {
   getVersion:function(){
     return {'version':'1.0.0'};
   },
@@ -31,7 +30,7 @@ var appReportHome = {
   },
   allData:{ soldData:{}, customersData:{}, productsData:{}, companiesData:{} },
   init: function(){
-    console.log('appHome:init');
+    console.log('appBoughtReport:init');
     var that = this;
     restCalls.getAllSoldData(that);
   },
