@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<title>My Store</title>
+
+	<link rel="stylesheet" href="style/normalize.css">
+	<link rel="stylesheet" href="style/app_basic.css">
+
+	<script type="text/javascript" src="js/libs/jquery-3.2.1.js"></script>
+</head>
+<body>
+
+	<ul id="id_menu">
+		<li id="id_menu_home" class="active_menu">Home</li>
+		<li id="id_menu_companies">Companies</li>
+		<li id="id_menu_customers">Customers</li>
+		<li id="id_menu_products">Products</li>
+	</ul>
+
+	<div id="dApplication">
+		<h1> Reports </h1>
+		<div id="idAppReport">
+      <div> <h2 id="id_totalTimesSold" style="text-align:center;"></h2> </div>
+			<div id="id_all_sold"></div>
+			<div> <h2 id="id_totalCustomers" style="text-align:center;"></h2> </div>
+		</div>
+	</div>
+	
+	<script src="js/uRESTConfig.js"></script>
+	<script src="js/restCalls.js"></script>
+	<script src="js/app_reports_bought_products.js"></script>
+</body>
+</html>

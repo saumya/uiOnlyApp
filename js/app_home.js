@@ -15,7 +15,10 @@ $(function(){
   //
   $('#idBtnProductBuy').on('click',function(){ window.location.href = rootURL + 'products_buy.html'; });
   $('#idBtnProductSell').on('click',function(){ window.location.href = rootURL + 'products_sell.html'; });
-  $('#idBtnReports').on('click',function(){ window.location.href = rootURL + 'reports_home.html'; });
+  $('#idBtnSoldReports').on('click',function(){ window.location.href = rootURL + 'reports_home.html'; });
+  $('#idBtnBoughtReports').on('click',function(){ window.location.href = rootURL + 'reports_bought_products.html'; });
+
+
   //
   //restCalls.getAllCustomers();
   console.log('%c version-' + appHome.getVersion().version +' ','background: #F00; color: #FFF');
