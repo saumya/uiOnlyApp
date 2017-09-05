@@ -240,8 +240,12 @@ select{
   margin: 0.4em;
   background-color: #EBFFEB;
 }
-
 #id_all_sold{
   height: 20em;
   overflow: scroll;
+}
+.sDetails{
+  display: inline-block;
+  width: 8em;
+  text-align: center;
 }
