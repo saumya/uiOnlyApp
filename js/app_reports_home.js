@@ -45,7 +45,7 @@ var appReportHome = {
     this.allData.soldData = resultData;
     //console.log(this.allData);
     //
-    $('#id_totalTimesSold').html('Total '+totalTimesSold+' transactions');
+    $('#id_totalTimesSold').html('Sold in total '+totalTimesSold+' transactions');
     resultData.map(function(cValue,cIndex,cArray){
       //console.log(that.getVersion());
       
