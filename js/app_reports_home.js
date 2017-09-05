@@ -29,7 +29,20 @@ var appReportHome = {
   init: function(){
     console.log('appHome:init');
     var that = this;
-    //restCalls.getAllCustomers(that);
+    restCalls.getAllSoldData(that);
+  },
+  onGotAllSoldData: function(resultData){
+    console.log('onGotAllSoldData:',resultData);
+    var totalTimesSold = resultData.length;
+    $('#id_totalTimesSold').html('Total '+totalTimesSold+' times Sold.');
+    resultData.map(function(cValue,cIndex,cArray){
+      console.log(cValue);
+      //var sHtml = "<div id="+cValue.id+" class='shortDetail'><div> Customer ID = "+cValue.customer_id+": Product ID = "+cValue.product_id+"</div><div> Quantity = "+cValue.quantity+' : on '+cValue.s_date+"</div><div id=sold_"+cValue.id+" class='btnDelete'>Delete</div></div>";
+      // Removed the DELETE button
+      //var sHtml = "<div id="+cValue.id+" class='shortDetail'><div> Customer ID = "+cValue.customer_id+": Product ID = "+cValue.product_id+"</div><div> Quantity = "+cValue.quantity+' : on '+cValue.s_date+"</div></div>";
+      var sHtml = "<div id="+cValue.id+" class='shortDetail'> <div>"+cValue.s_date+' : Nos.'+cValue.quantity+"</div> </div>";
+      $('#id_all_sold').append(sHtml);
+    });
   },
   onGotAllCustomerData: function(resultObj){
     console.log('onGotAllCustomerData:',resultObj);

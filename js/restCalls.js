@@ -324,6 +324,36 @@ var restCalls = {
     });
   },
   // ========================== / Sell Product ============================
+  // ========================== Report ====================================
+  getAllSoldData: function(scopeRef){
+    $.ajax({
+      method: "GET",
+      async: true,
+      url: uRESTConfig.apiRootURI + uRESTConfig.getSoldData,
+      //data:dataObj,
+      dataType:'json',
+      success: function(data, textStatus, jqXHR){
+        console.group('AJAX:getAllSoldData:Success');
+        console.log(data);
+        console.log('textStatus',textStatus);
+        console.log('jqXHR',jqXHR);
+        console.groupEnd();
+        //productsSoldApp.onSellSuccess();
+        scopeRef.onGotAllSoldData(data);
+      },
+    })
+    .done(function(data){
+      //console.group('AJAX:getAllSoldData:done');
+      //console.log(data);
+      //console.groupEnd();
+      console.log('===== AJAJ : done =====');
+      //appFirstObj.onAppReadyWithCustomerData();
+    })
+    .fail(function(error){
+      console.log('AJAX:getAllSoldData:fail:',error);
+    });
+  },
+  // ========================== / Report ==================================
   end: function(){
     console.log('end : restCalls');
   }

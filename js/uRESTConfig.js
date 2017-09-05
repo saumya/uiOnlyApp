@@ -13,6 +13,7 @@ var uRESTConfig = {
   removeCompany: "v1.0.0/delete/company",
   buyProduct: "v1.0.0/add/product_bought",
   sellProduct: "v1.0.0/add/product_sold",
+  getSoldData: "v1.0.0/allSold",
   nothing:"",
 };
 //END - Application Object
