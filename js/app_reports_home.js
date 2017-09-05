@@ -29,7 +29,7 @@ var appReportHome = {
   logVersion: function(){
     console.log('%c version-' + this.getVersion().version +' ','background: #F00; color: #FFF');
   },
-  allData:{ soldData:{}, customersData:{}, productsData:{} },
+  allData:{ soldData:{}, customersData:{}, productsData:{}, companiesData:{} },
   init: function(){
     console.log('appHome:init');
     var that = this;
@@ -80,14 +80,29 @@ var appReportHome = {
     var resultProducts = restCalls.getAllProducts(that);
     resultProducts.done(function(data){
       that.allData.productsData = data;
-      that.renderWithAllData();
+      //that.renderWithAllData();
+      that.onGotAllProductsData();
     });
+  },
+  onGotAllProductsData: function(){
+    console.log('onGotAllProductsData');
+    //this.renderWithAllData();
+    var that = this;
+    var result = restCalls.getAllCompanies();
+    result.done(function(resultData){
+      that.allData.companiesData = resultData;
+      that.onGotAllCompaniesData();
+    });
+  },
+  onGotAllCompaniesData: function(){
+    console.log('onGotAllCompaniesData');
+    this.renderWithAllData();
   },
   onAppReadyWithCustomerData: function(){
     console.log('%c Just a callback. Doing Nothing. ','background: #222; color: #bada55');
   },
   renderWithAllData: function(){
-    console.log('renderWithAllData');
+    console.log('================ renderWithAllData ===========');
     console.log(this.allData);
     $('#id_all_sold').html('');
     var that = this;
@@ -95,14 +110,31 @@ var appReportHome = {
       //console.log(cValue);
       var sHtml = '';
       //var sHtml = "<div id="+cValue.id+" class='shortDetail'> <div>"+cValue.s_date+' : Nos.'+cValue.quantity+"</div> </div>";
-      var i = 0;
-      var j = 0;
+      var i = 0; //products
+      var j = 0; //Customers
+      var k = 0; //Companies
       sHtml += "<div id="+cValue.id+" class='shortDetail'> <div> <span class='sDetails'>"+cValue.s_date+"</span><span class='sDetails'>"+cValue.quantity+"</span>";
       //
       for(i;i<that.allData.productsData.length;i++){
         //console.log(cValue.product_id,that.allData.productsData[i]);
         if(cValue.product_id === that.allData.productsData[i].id){
+          console.log('Product',that.allData.productsData[i]);
           sHtml += "<span class='sDetails'>"+that.allData.productsData[i].name+"</span>";
+          
+            for(k;k<that.allData.companiesData.length;k++){
+              console.log('==================== >>>');
+              console.log(that.allData.productsData[i].id_company,that.allData.companiesData[k].id);
+              console.log('<<< ====================');
+              if(that.allData.productsData[i].id_company === that.allData.companiesData[k].id){
+                //console.log('===============',that.allData.companiesData[k].name+'===========');
+                sHtml += "<span class='sDetails'>"+that.allData.companiesData[k].name+"</span>";
+                break;
+              }else{
+                sHtml += "<span class='sDetails'> - NA - </span>";
+                break;
+              }
+            }
+
           break;
         }
       }
