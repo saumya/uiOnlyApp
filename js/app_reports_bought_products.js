@@ -119,7 +119,9 @@ var appBoughtReport = {
           sHtml += "<span class='sDetails'>"+that.allData.customersData[j].name+"</span>";
           break;
         }
-      }*/
+      }
+      */
+
       sHtml+='</div>';
 
       $('#id_all_sold').append(sHtml);
