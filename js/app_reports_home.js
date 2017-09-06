@@ -31,8 +31,9 @@ var appReportHome = {
   },
   allData:{ soldData:{}, customersData:{}, productsData:{}, companiesData:{} },
   init: function(){
-    console.log('appHome:init');
+    console.log('appReportHome:init');
     var that = this;
+    $('#idBtnFilter').on('click',function(){ that.onFilter(); });
     restCalls.getAllSoldData(that);
   },
   onGotAllSoldData: function(resultData){
@@ -62,31 +63,15 @@ var appReportHome = {
   onGotAllCustomerData: function(resultObj){
     console.log('onGotAllCustomerData:',resultObj);
     this.allData.customersData = resultObj;
-    /*
-    var total = resultObj.length;
-    $('#idTotal_Cust').html(total);
-    var resultObjProducts = restCalls.getAllProducts();
-    resultObjProducts.done(function(resultData){
-      var totalProducts = resultData.length;
-      $('#idTotal_Products').html(totalProducts);
-    });
-    var resultObjCompanies = restCalls.getAllCompanies();
-    resultObjCompanies.done(function(resultdata){
-      var totalCompanies = resultdata.length;
-      $('#idTotal_Companies').html(totalCompanies);
-    });
-    */
     var that = this;
     var resultProducts = restCalls.getAllProducts(that);
     resultProducts.done(function(data){
       that.allData.productsData = data;
-      //that.renderWithAllData();
       that.onGotAllProductsData();
     });
   },
   onGotAllProductsData: function(){
     console.log('onGotAllProductsData');
-    //this.renderWithAllData();
     var that = this;
     var result = restCalls.getAllCompanies();
     result.done(function(resultData){
@@ -150,6 +135,11 @@ var appReportHome = {
       //
       $('#id_totalCustomers').html(that.allData.customersData.length+' Customers / '+that.allData.productsData.length+' Products');
     });
+  },
+  onFilter: function(){
+    console.log('onFilter');
+    var sDate = $('#idDate').val();
+    console.log('Todo: Filter on date',sDate);
   },
   end:function(){
     console.log('AppHome : End');
