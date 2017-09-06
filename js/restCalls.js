@@ -353,6 +353,34 @@ var restCalls = {
       console.log('AJAX:getAllSoldData:fail:',error);
     });
   },
+  getAllBoughtData: function(scopeRef){
+    $.ajax({
+      method: "GET",
+      async: true,
+      url: uRESTConfig.apiRootURI + uRESTConfig.getBoughtData,
+      //data:dataObj,
+      dataType:'json',
+      success: function(data, textStatus, jqXHR){
+        console.group('AJAX:getAllSoldData:Success');
+        console.log(data);
+        console.log('textStatus',textStatus);
+        console.log('jqXHR',jqXHR);
+        console.groupEnd();
+        scopeRef.onGotAllBoughtData(data);
+        //callback(data);
+      },
+    })
+    .done(function(data){
+      //console.group('AJAX:getAllSoldData:done');
+      //console.log(data);
+      //console.groupEnd();
+      console.log('===== AJAJ : done =====');
+      //appFirstObj.onAppReadyWithCustomerData();
+    })
+    .fail(function(error){
+      console.log('AJAX:getAllSoldData:fail:',error);
+    });
+  },
   // ========================== / Report ==================================
   end: function(){
     console.log('end : restCalls');

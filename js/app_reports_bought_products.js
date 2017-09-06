@@ -28,64 +28,37 @@ var appBoughtReport = {
   logVersion: function(){
     console.log('%c version-' + this.getVersion().version +' ','background: #F00; color: #FFF');
   },
-  allData:{ soldData:{}, customersData:{}, productsData:{}, companiesData:{} },
+  allData:{ boughtData:{}, customersData:{}, productsData:{}, companiesData:{} },
   init: function(){
     console.log('appBoughtReport:init');
     var that = this;
-    restCalls.getAllSoldData(that);
+    //restCalls.getAllBoughtData(that.onGotAllBoughtData); // callback
+    restCalls.getAllBoughtData(that); // scope
   },
-  onGotAllSoldData: function(resultData){
-    console.log('onGotAllSoldData:',resultData);
+  onGotAllBoughtData: function(resultData){
+    console.log('onGotAllBoughtData');
     var that = this;
-    //that.logVersion();
-    //this.logVersion();
-    var totalTimesSold = resultData.length;
-    //console.log(this.allData);
-    this.allData.soldData = resultData;
-    //console.log(this.allData);
-    //
-    $('#id_totalTimesSold').html('Sold in total '+totalTimesSold+' transactions');
+    var totalBoughtTransactions = resultData.length;
+    this.allData.boughtData = resultData;
+    $('#id_totalTimesSold').html('Bought in '+totalBoughtTransactions+' transactions');
     resultData.map(function(cValue,cIndex,cArray){
-      //console.log(that.getVersion());
-      
-      //console.log(cValue);
-      //var sHtml = "<div id="+cValue.id+" class='shortDetail'><div> Customer ID = "+cValue.customer_id+": Product ID = "+cValue.product_id+"</div><div> Quantity = "+cValue.quantity+' : on '+cValue.s_date+"</div><div id=sold_"+cValue.id+" class='btnDelete'>Delete</div></div>";
-      // Removed the DELETE button
-      //var sHtml = "<div id="+cValue.id+" class='shortDetail'><div> Customer ID = "+cValue.customer_id+": Product ID = "+cValue.product_id+"</div><div> Quantity = "+cValue.quantity+' : on '+cValue.s_date+"</div></div>";
-      var sHtml = "<div id="+cValue.id+" class='shortDetail'> <div>"+cValue.s_date+' : Nos.'+cValue.quantity+"</div> </div>";
+      var sHtml = "<div id="+cValue.id+" class='shortDetail'> <div>"+cValue.b_date+' : Nos.'+cValue.quantity+"</div> </div>";
       $('#id_all_sold').append(sHtml);
     });
-    //
     restCalls.getAllCustomers(that);
   },
   onGotAllCustomerData: function(resultObj){
     console.log('onGotAllCustomerData:',resultObj);
     this.allData.customersData = resultObj;
-    /*
-    var total = resultObj.length;
-    $('#idTotal_Cust').html(total);
-    var resultObjProducts = restCalls.getAllProducts();
-    resultObjProducts.done(function(resultData){
-      var totalProducts = resultData.length;
-      $('#idTotal_Products').html(totalProducts);
-    });
-    var resultObjCompanies = restCalls.getAllCompanies();
-    resultObjCompanies.done(function(resultdata){
-      var totalCompanies = resultdata.length;
-      $('#idTotal_Companies').html(totalCompanies);
-    });
-    */
     var that = this;
     var resultProducts = restCalls.getAllProducts(that);
     resultProducts.done(function(data){
       that.allData.productsData = data;
-      //that.renderWithAllData();
       that.onGotAllProductsData();
     });
   },
   onGotAllProductsData: function(){
     console.log('onGotAllProductsData');
-    //this.renderWithAllData();
     var that = this;
     var result = restCalls.getAllCompanies();
     result.done(function(resultData){
@@ -101,29 +74,33 @@ var appBoughtReport = {
     console.log('%c Just a callback. Doing Nothing. ','background: #222; color: #bada55');
   },
   renderWithAllData: function(){
+    //console.clear();
     console.log('================ renderWithAllData ===========');
     console.log(this.allData);
     $('#id_all_sold').html('');
     var that = this;
-    this.allData.soldData.map(function(cValue,cIndex,cArray){
+    this.allData.boughtData.map(function(cValue,cIndex,cArray){
       //console.log(cValue);
       var sHtml = '';
       //var sHtml = "<div id="+cValue.id+" class='shortDetail'> <div>"+cValue.s_date+' : Nos.'+cValue.quantity+"</div> </div>";
       var i = 0; //products
       var j = 0; //Customers
       var k = 0; //Companies
-      sHtml += "<div id="+cValue.id+" class='shortDetailDiv'> <span class='sDetails'>"+cValue.s_date+"</span><span class='sDetails'>"+cValue.quantity+"</span>";
+      sHtml += "<div id="+cValue.id+" class='shortDetailDiv'> <span class='sDetails'>"+cValue.b_date+"</span><span class='sDetails'>"+cValue.quantity+"</span>";
       //
       for(i;i<that.allData.productsData.length;i++){
-        //console.log(cValue.product_id,that.allData.productsData[i]);
+        //console.log(cValue.product_id,that.allData.productsData[i].id);
         if(cValue.product_id === that.allData.productsData[i].id){
-          console.log('Product',that.allData.productsData[i]);
+          //console.log(cValue.product_id,that.allData.productsData[i].id);
+          //console.log('Product',that.allData.productsData[i]);
           sHtml += "<span class='sDetails'>"+that.allData.productsData[i].name+"</span>";
-          
             for(k;k<that.allData.companiesData.length;k++){
+              /*
               console.log('==================== >>>');
               console.log(that.allData.productsData[i].id_company,that.allData.companiesData[k].id);
               console.log('<<< ====================');
+              */
+              //console.log(cValue.product_id,that.allData.productsData[i].id_company);
               if(that.allData.productsData[i].id_company === that.allData.companiesData[k].id){
                 //console.log('===============',that.allData.companiesData[k].name+'===========');
                 sHtml += "<span class='sDetails'>"+that.allData.companiesData[k].name+"</span>";
@@ -133,16 +110,16 @@ var appBoughtReport = {
                 break;
               }
             }
-
           break;
         }
       }
+      /*
       for(j;j<that.allData.customersData.length;j++){
         if(cValue.customer_id === that.allData.customersData[j].id){
           sHtml += "<span class='sDetails'>"+that.allData.customersData[j].name+"</span>";
           break;
         }
-      }
+      }*/
       sHtml+='</div>';
 
       $('#id_all_sold').append(sHtml);

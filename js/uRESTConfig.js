@@ -14,6 +14,7 @@ var uRESTConfig = {
   buyProduct: "v1.0.0/add/product_bought",
   sellProduct: "v1.0.0/add/product_sold",
   getSoldData: "v1.0.0/allSold",
+  getBoughtData: "v1.0.0/allBought",
   nothing:"",
 };
 //END - Application Object
