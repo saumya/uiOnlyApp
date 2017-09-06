@@ -17,12 +17,10 @@ $(function(){
   $('#idBtnProductSell').on('click',function(){ window.location.href = rootURL + 'products_sell.html'; });
   $('#idBtnReports').on('click',function(){ window.location.href = rootURL + 'reports_home.html'; });
   //
-  //restCalls.getAllCustomers();
-  console.log('%c version-' + appReportHome.getVersion().version +' ','background: #F00; color: #FFF');
-  appReportHome.init();
+  appSoldReport.init();
 });//END: jQuery.ready()
 
-var appReportHome = {
+var appSoldReport = {
   getVersion:function(){
     return {'version':'1.0.0'};
   },
@@ -118,13 +116,13 @@ var appReportHome = {
       for(i;i<that.allData.productsData.length;i++){
         //console.log(cValue.product_id,that.allData.productsData[i]);
         if(cValue.product_id === that.allData.productsData[i].id){
-          //console.log('Product',that.allData.productsData[i]);
+          console.log('Product',that.allData.productsData[i]);
           sHtml += "<span class='sDetails'>"+that.allData.productsData[i].name+"</span>";
           
             for(k;k<that.allData.companiesData.length;k++){
-              //console.log('==================== >>>');
-              //console.log(that.allData.productsData[i].id_company,that.allData.companiesData[k].id);
-              //console.log('<<< ====================');
+              console.log('==================== >>>');
+              console.log(that.allData.productsData[i].id_company,that.allData.companiesData[k].id);
+              console.log('<<< ====================');
               if(that.allData.productsData[i].id_company === that.allData.companiesData[k].id){
                 //console.log('===============',that.allData.companiesData[k].name+'===========');
                 sHtml += "<span class='sDetails'>"+that.allData.companiesData[k].name+"</span>";
