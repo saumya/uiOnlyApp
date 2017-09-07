@@ -30,10 +30,11 @@ var appReportHome = {
     console.log('%c version-' + this.getVersion().version +' ','background: #F00; color: #FFF');
   },
   allData:{ soldData:{}, customersData:{}, productsData:{}, companiesData:{} },
+  filterData:{ soldData:{}, boughtData:{} },
   init: function(){
     console.log('appReportHome:init');
     var that = this;
-    $('#idBtnFilter').on('click',function(){ that.onFilter(); });
+    $('#idBtnFilter').on('click',function(){ that.onFilterByDate(); });
     restCalls.getAllSoldData(that);
   },
   onGotAllSoldData: function(resultData){
@@ -136,11 +137,37 @@ var appReportHome = {
       $('#id_totalCustomers').html(that.allData.customersData.length+' Customers / '+that.allData.productsData.length+' Products');
     });
   },
-  onFilter: function(){
-    console.log('onFilter');
+  onFilterByDate: function(){
+    console.log('onFilterByDate');
+    var that = this;
     var sDate = $('#idDate').val();
-    console.log('Todo: Filter on date',sDate);
+    restCalls.getByDateBoughtData(sDate,that);
+    /*resultObj.sold.map(function(cValue,cIndex,cArray){
+      console.log('sold',cValue);
+    });
+    resultObj.bought.map(function(cValue,cIndex,cArray){
+      console.log('bought',cValue);
+    });*/
   },
+  onGotBoughtByDate: function(result){
+    console.log('onGotBoughtByDate');
+    var that = this;
+    this.filterData.boughtData = result;
+    this.getSoldByDate();
+  },
+  getSoldByDate: function(){
+    console.log('getSoldByDate');
+    var that = this;
+    var sDate = $('#idDate').val();
+    restCalls.getByDateSoldData(sDate,that);
+  },
+  onGotSoldByDate: function(result){
+    console.log('onGotSoldByDate');
+    var that = this;
+    this.filterData.soldData = result;
+    console.log(this.filterData);
+  },
+
   end:function(){
     console.log('AppHome : End');
   }

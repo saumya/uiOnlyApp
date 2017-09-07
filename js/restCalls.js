@@ -381,6 +381,31 @@ var restCalls = {
       console.log('AJAX:getAllSoldData:fail:',error);
     });
   },
+  getByDateBoughtData: function(sDate,scopeRef){
+    console.log('getByDateBoughtData');
+    //$.ajax().done(function(data){}).fail(function(error){});
+    $.ajax({
+      method: 'GET',
+      async: true,
+      url: uRESTConfig.apiRootURI + uRESTConfig.getBoughtByDate + sDate,
+      dataType: 'json',
+      success: function(resultData){
+        console.log(resultData);
+        scopeRef.onGotBoughtByDate(resultData);
+      }
+    });
+  },
+  getByDateSoldData: function(sDate,scopeRef){
+    $.ajax({
+      method: 'GET',
+      async: true,
+      url: uRESTConfig.apiRootURI + uRESTConfig.getSoldByDate + sDate,
+      dataType: 'json',
+      success: function(resultData){
+        scopeRef.onGotSoldByDate(resultData);
+      }
+    });
+  },
   // ========================== / Report ==================================
   end: function(){
     console.log('end : restCalls');
