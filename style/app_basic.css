@@ -255,12 +255,21 @@ select{
   width: 20%;
   text-align: center;
 }
-
+/* ======= Filter View ============== */
 .filterRowforSold{
-  width: 100%;
   background-color: #BBF6BB;
+  margin-bottom: 0.1em;
 }
 .filterRowforBought{
-  width: 100%;
   background-color: #F3BFBF;
+  margin-bottom: 0.1em;
+}
+#id_filter_data{
+  height: 20em;
+}
+#id_filter_date_bought{
+  
+}
+#id_filter_date_sold{
+  
 }

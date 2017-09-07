@@ -170,27 +170,43 @@ var appReportHome = {
   },
   renderFilterData: function(){
     var sHTML = '';
-    sHTML += "<div class='shortDetailDiv'>";
+    var sHtmlBought = sHtmlSold = '';
+    
+    sHtmlBought = "<div class='shortDetailDiv'>";
+    sHtmlSold = "<div class='shortDetailDiv'>";
+
+    //sHTML += "<div class='shortDetailDiv'>";
     var nSold = 0;
     var nBought = 0;
+
     this.filterData.soldData.map(function(cValue,cIndex,cArray){
       //console.log('sold',cValue);
       nSold++;
-      sHTML += "<div class='filterRowforSold'> CustomerID="+cValue.customer_id+':ProductID='+cValue.product_id+": Quantity-"+ cValue.quantity+':'+ cValue.s_date +"</div>";
+      sHtmlSold += "<div class='filterRowforSold'>ProductID="+cValue.product_id+": Quantity-"+ cValue.quantity+':'+ cValue.s_date +': Customer ID:'+cValue.customer_id+"</div>";
     });
     this.filterData.boughtData.map(function(cValue,cIndex,cArray){
       nBought++;
-      sHTML += "<div class='filterRowforBought'>ProductID="+cValue.product_id+": Quantity-"+ cValue.quantity+':'+ cValue.b_date +"</div>";
+      sHtmlBought += "<div class='filterRowforBought'>ProductID="+cValue.product_id+": Quantity-"+ cValue.quantity+':'+ cValue.b_date +"</div>";
       //console.log('bought',cValue);
     });
 
-    sHTML += "</div>";
+    //sHTML += "</div>";
+    sHtmlBought += "</div>";
+    sHtmlSold += "</div>";
 
-    $('#id_filter_data').html('');
-    $('#id_filter_data').html(sHTML);
-
-    var sTotal = 'Bought='+nBought+' / Sold='+nSold;
+    //$('#id_filter_data').html('');
+    //$('#id_filter_data').html(sHTML);
+    var sDate = $('#idDate').val();
+    var sTotal = 'Bought='+nBought+' / Sold='+nSold+' on '+sDate;
+    
     $('#id_filter_total').html(sTotal);
+
+    $('#id_filter_date_bought').html('');
+    $('#id_filter_date_sold').html('');
+
+    $('#id_filter_date_bought').html(sHtmlBought);
+    $('#id_filter_date_sold').html(sHtmlSold);
+
   },
 
   end:function(){
