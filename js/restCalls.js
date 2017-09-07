@@ -382,7 +382,7 @@ var restCalls = {
     });
   },
   getByDateBoughtData: function(sDate,scopeRef){
-    console.log('getByDateBoughtData');
+    //console.log('getByDateBoughtData');
     //$.ajax().done(function(data){}).fail(function(error){});
     $.ajax({
       method: 'GET',
@@ -390,7 +390,7 @@ var restCalls = {
       url: uRESTConfig.apiRootURI + uRESTConfig.getBoughtByDate + sDate,
       dataType: 'json',
       success: function(resultData){
-        console.log(resultData);
+        //console.log(resultData);
         scopeRef.onGotBoughtByDate(resultData);
       }
     });

@@ -150,22 +150,47 @@ var appReportHome = {
     });*/
   },
   onGotBoughtByDate: function(result){
-    console.log('onGotBoughtByDate');
+    //console.log('onGotBoughtByDate');
     var that = this;
     this.filterData.boughtData = result;
     this.getSoldByDate();
   },
   getSoldByDate: function(){
-    console.log('getSoldByDate');
+    //console.log('getSoldByDate');
     var that = this;
     var sDate = $('#idDate').val();
     restCalls.getByDateSoldData(sDate,that);
   },
   onGotSoldByDate: function(result){
-    console.log('onGotSoldByDate');
+    //console.log('onGotSoldByDate');
     var that = this;
     this.filterData.soldData = result;
-    console.log(this.filterData);
+    console.log('this.filterData',this.filterData);
+    this.renderFilterData();
+  },
+  renderFilterData: function(){
+    var sHTML = '';
+    sHTML += "<div class='shortDetailDiv'>";
+    var nSold = 0;
+    var nBought = 0;
+    this.filterData.soldData.map(function(cValue,cIndex,cArray){
+      //console.log('sold',cValue);
+      nSold++;
+      sHTML += "<div class='filterRowforSold'> CustomerID="+cValue.customer_id+':ProductID='+cValue.product_id+": Quantity-"+ cValue.quantity+':'+ cValue.s_date +"</div>";
+    });
+    this.filterData.boughtData.map(function(cValue,cIndex,cArray){
+      nBought++;
+      sHTML += "<div class='filterRowforBought'>ProductID="+cValue.product_id+": Quantity-"+ cValue.quantity+':'+ cValue.b_date +"</div>";
+      //console.log('bought',cValue);
+    });
+
+    sHTML += "</div>";
+
+    $('#id_filter_data').html('');
+    $('#id_filter_data').html(sHTML);
+
+    var sTotal = 'Bought='+nBought+' / Sold='+nSold;
+    $('#id_filter_total').html(sTotal);
   },
 
   end:function(){

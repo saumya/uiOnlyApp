@@ -255,3 +255,12 @@ select{
   width: 20%;
   text-align: center;
 }
+
+.filterRowforSold{
+  width: 100%;
+  background-color: #BBF6BB;
+}
+.filterRowforBought{
+  width: 100%;
+  background-color: #F3BFBF;
+}
