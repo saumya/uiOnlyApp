@@ -178,15 +178,20 @@ var appReportHome = {
     //sHTML += "<div class='shortDetailDiv'>";
     var nSold = 0;
     var nBought = 0;
-
+    //
+    var that = this;
+    //
     this.filterData.soldData.map(function(cValue,cIndex,cArray){
       //console.log('sold',cValue);
       nSold++;
-      sHtmlSold += "<div class='filterRowforSold'>ProductID="+cValue.product_id+": Quantity-"+ cValue.quantity+':'+ cValue.s_date +': Customer ID:'+cValue.customer_id+"</div>";
+      var productName = that.getProductName(cValue.product_id);
+      var customerName = that.getCustomerName(cValue.customer_id);
+      sHtmlSold += "<div class='filterRowforSold'> <span class='filterColumn'>"+productName+"</span><span class='filterColumn'>Nos-"+ cValue.quantity+"</span><span class='filterColumn'>"+ cValue.s_date +"</span><span class='filterColumn'>"+customerName+"</span></div>";
     });
     this.filterData.boughtData.map(function(cValue,cIndex,cArray){
       nBought++;
-      sHtmlBought += "<div class='filterRowforBought'>ProductID="+cValue.product_id+": Quantity-"+ cValue.quantity+':'+ cValue.b_date +"</div>";
+      var productName = that.getProductName(cValue.product_id);
+      sHtmlBought += "<div class='filterRowforBought'> <span class='filterColumn'>"+productName+"</span><span class='filterColumn'> Nos-"+ cValue.quantity+"</span><span class='filterColumn'>"+ cValue.b_date +"</span> </div>";
       //console.log('bought',cValue);
     });
 
@@ -207,6 +212,31 @@ var appReportHome = {
     $('#id_filter_date_bought').html(sHtmlBought);
     $('#id_filter_date_sold').html(sHtmlSold);
 
+  },
+
+  getProductName: function(productID){
+    var pName = ' -NA- ';
+    var that = this;
+    var i = 0;
+    for(i;i<that.allData.productsData.length;i++){
+      if(that.allData.productsData[i].id === productID){
+        pName = that.allData.productsData[i].name;
+        return pName;
+      }
+    }
+    return pName;
+  },
+  getCustomerName: function(customerID){
+    var cName = ' -NA- ';
+    var that = this;
+    var i = 0;
+    for(i;i<that.allData.customersData.length;i++){
+      if(that.allData.customersData[i].id === customerID){
+        cName = that.allData.customersData[i].name;
+        return cName;
+      }
+    }
+    return cName;
   },
 
   end:function(){

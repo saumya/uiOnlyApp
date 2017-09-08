@@ -27,25 +27,27 @@
 
 	<div id="dApplication">
 		<h1> Reports </h1>
+		
+		<div class="fullWidthDisplay">
+			<div class="formDiv">
+				<input type="date" id="idDate" name="product sold date">
+				<input type="Button" id="idBtnFilter" class="clsBtnGeneral" name="filter" value="Filter"></input>
+			</div>
+			<div>
+				<div id="id_filter_data">
+					<div id="id_filter_date_bought"></div>
+					<div id="id_filter_date_sold"></div>
+				</div>
+				<h3 id="id_filter_total"></h3>
+			</div>
+		</div>
+
 		<div id="idAppReport">
       <div> <h2 id="id_totalTimesSold" style="text-align:center;"></h2> </div>
 			<div id="id_all_sold"></div>
 			<div> <h2 id="id_totalCustomers" style="text-align:center;"></h2> </div>
 		</div>
-		<div>
-			<div class="formDiv">
-				<input type="date" id="idDate" name="product sold date">
-			</div>
-			<div class="formDiv">
-				<input type="Button" id="idBtnFilter" class="clsBtnGeneral" name="filter" value="Filter"></input>
-			</div>
-			<div id="id_filter_data">
-				<h3 id="id_filter_total"></h3>
-				<div id="id_filter_date_bought"></div>
-				<div id="id_filter_date_sold"></div>
-			</div>
-			
-		</div>
+		
 	</div>
 	
 	<script src="js/uRESTConfig.js"></script>

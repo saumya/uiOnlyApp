@@ -257,19 +257,34 @@ select{
 }
 /* ======= Filter View ============== */
 .filterRowforSold{
-  background-color: #BBF6BB;
+  background-color: #00FF00;
   margin-bottom: 0.1em;
 }
 .filterRowforBought{
   background-color: #F3BFBF;
   margin-bottom: 0.1em;
 }
+.filterColumn{
+  display: inline-block;
+  width: 6em;
+  padding: 0.2em;
+  margin: 0.1em;
+  background-color: #F2FEAB;
+}
+
 #id_filter_data{
   height: 20em;
+  overflow: scroll;
+}
+#id_filter_total{
+  text-align: center;
 }
 #id_filter_date_bought{
   
 }
 #id_filter_date_sold{
   
+}
+.fullWidthDisplay{
+  width: 90%;
 }
