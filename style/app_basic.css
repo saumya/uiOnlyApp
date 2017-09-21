@@ -274,7 +274,7 @@ select{
 
 #id_filter_data{
   height: 20em;
-  overflow: scroll;
+  overflow: auto;
 }
 #id_filter_total{
   text-align: center;
