@@ -17,6 +17,7 @@ $(function(){
   $('#idBtnProductSell').on('click',function(){ window.location.href = rootURL + 'products_sell.html'; });
   $('#idBtnSoldReports').on('click',function(){ window.location.href = rootURL + 'reports_sold_products.html'; });
   $('#idBtnBoughtReports').on('click',function(){ window.location.href = rootURL + 'reports_bought_products.html'; });
+  $('#idBtnReportsHome').on('click',function(){ window.location.href = rootURL + 'reports_home.html'; });
 
 
   //
